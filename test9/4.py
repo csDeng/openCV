@@ -23,7 +23,7 @@ def build(filename):
         frame= frame.astype(np.float32)
         total += frame
         zhen += 1
-        print("当前帧数",zhen)
+        # print("当前帧数",zhen)
 
     img = total / zhen
     img = img.astype(np.uint8)

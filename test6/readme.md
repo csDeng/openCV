@@ -1,7 +1,7 @@
 （一）使用OpenCV对图像进行Harris，SIFT特征点提取，并标注特征点
 
 ```python
-\# 使用OpenCV对图像进行Harris，SIFT特征点提取，并标注特征点
+# 使用OpenCV对图像进行Harris，SIFT特征点提取，并标注特征点
 
  
 
@@ -11,17 +11,17 @@ import numpy as np
 
 try:
 
-  \# print(cv2.__version__)
+  # print(cv2.__version__)
 
-  \# filename = "test.tiff"
+  # filename = "test.tiff"
 
   filename = "qipan.jpg"
 
   img = cv2.imread("./pics/"+filename)
 
-  \# print(img)
+  # print(img)
 
-  \# cv2.imshow("origin", img)
+  # cv2.imshow("origin", img)
 
   o = img.copy()  # 深拷贝原图
 
@@ -35,23 +35,23 @@ try:
 
  
 
-  \# harries
+  # harries
 
   gray = np.float32(gray)
 
   harries = cv2.cornerHarris(gray, 2, 3, 0.04)
 
-  \# img[harries>0.01*dst.max()]=[0,0,255] 
+  # img[harries>0.01*dst.max()]=[0,0,255] 
 
-  \# 系数越小，识别到的角点越多
+  # 系数越小，识别到的角点越多
 
-  \# 描点
+  # 描点
 
   img[harries>0.01*harries.max()]=[255,0,0]
 
  
 
-  \# SIFT
+  # SIFT
 
   sift = cv2.xfeatures2d.SIFT_create()
 
@@ -61,7 +61,7 @@ try:
 
  
 
-  \# 把两张图片一起显示
+  # 把两张图片一起显示
 
   imghStack = np.hstack((o, img, o1))
 
@@ -87,7 +87,7 @@ except Exception as e:
 源码：
 
 ```python
-\# （二）使用OpenCV生成特征的SIFT描述子，对两幅有重叠的图片进行描述子匹配
+# （二）使用OpenCV生成特征的SIFT描述子，对两幅有重叠的图片进行描述子匹配
 
 import cv2 as cv
 
@@ -105,7 +105,7 @@ try:
 
   cv.imshow("box_in_sence", box_in_sence)
 
-  \# 创建SIFT特征检测器
+  # 创建SIFT特征检测器
 
   sift = cv.xfeatures2d.SIFT_create()
 
@@ -113,13 +113,13 @@ try:
 
   kp2, des2 = sift.detectAndCompute(box_in_sence,None)
 
-  \# 暴力匹配
+  # 暴力匹配
 
   bf = cv.DescriptorMatcher_create(cv.DescriptorMatcher_BRUTEFORCE)
 
   matches = bf.match(des1,des2)
 
-  \# 绘制匹配
+  # 绘制匹配
 
   matches = sorted(matches, key = lambda x:x.distance)
 
@@ -149,7 +149,7 @@ try:
 
   result = cv.drawMatches(box, kp1, box_in_sence, kp2, matches1to2=matches[:30], outImg=None)
 
-  \# 显示30个特征点
+  # 显示30个特征点
 
   cv.imshow("smallMatchBig", result)
 
@@ -215,7 +215,7 @@ try:
 
 except Exception as e:
 
-  print("error====>\r\n", e, "\r\n ============\r\n")
+  print("error====>rn", e, "rn ============rn")
 ```
 
 
